@@ -43,6 +43,9 @@ public class Alimento {
     @ElementCollection
     private List<String> proveedores;
 
+    @Column(name = "FOTO")
+    private byte[] foto;
+    
     public Alimento(Long idUsuario, String nombre, TipoAlimento tipo, String composicionNutricional,
             LocalDate fechaDeCaducidad, int cantidadDisponible, double precioPorUnidad, List<String> proveedores) {
         this.idUsuario = idUsuario;
@@ -56,6 +59,20 @@ public class Alimento {
     }
 
     public Alimento() {
+    }
+
+    public Alimento(Long idUsuario, String nombre, TipoAlimento tipo, String composicionNutricional,
+            LocalDate fechaDeCaducidad, int cantidadDisponible, double precioPorUnidad, List<String> proveedores,
+            byte[] foto) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.composicionNutricional = composicionNutricional;
+        this.fechaDeCaducidad = fechaDeCaducidad;
+        this.cantidadDisponible = cantidadDisponible;
+        this.precioPorUnidad = precioPorUnidad;
+        this.proveedores = proveedores;
+        this.foto = foto;
     }
 
     public Long getIdAlimento() {
@@ -128,5 +145,13 @@ public class Alimento {
 
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }    
 }
