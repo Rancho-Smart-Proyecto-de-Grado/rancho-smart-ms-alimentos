@@ -38,6 +38,26 @@ public class AlimentoRESTController {
                        .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/finca/{idFinca}")
+    public ResponseEntity<List<Alimento>> getAlimentosByIdFinca(@PathVariable Long idFinca){
+        List<Alimento> alimentosFinca = this.alimentoService.getAlimentosByIdFinca(idFinca);
+        if(alimentosFinca.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(alimentosFinca, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/usuario/{idUsuario}")
+    public ResponseEntity<List<Alimento>> getAlimentosByIdUsuario(@PathVariable Long idUsuario){
+        List<Alimento> alimentosUsuario = this.alimentoService.getAlimentosByIdUsuario(idUsuario);
+        if(alimentosUsuario.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(alimentosUsuario, HttpStatus.OK);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Alimento> saveAlimento(@RequestBody Alimento alimento) {
         Alimento alimentoCreado = this.alimentoService.saveAlimento(alimento);

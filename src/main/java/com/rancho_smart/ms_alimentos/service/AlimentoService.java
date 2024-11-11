@@ -19,6 +19,13 @@ public class AlimentoService {
         return this.alimentoRepository.findAll();
     }
 
+    public List<Alimento> getAlimentosByIdFinca(Long idFinca){
+        return this.alimentoRepository.findByIdFinca(idFinca);
+    }
+
+    public List<Alimento> getAlimentosByIdUsuario(Long idUsuario){
+        return this.alimentoRepository.findByIdUsuario(idUsuario);
+    }
     public Optional<Alimento> getAlimentoById(Long id) {
         return this.alimentoRepository.findById(id);
     }

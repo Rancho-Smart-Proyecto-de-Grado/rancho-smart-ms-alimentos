@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,6 +22,9 @@ public class Alimento {
 
     @Column(name = "ID_USUARIO")
     private Long idUsuario;
+
+    @Column(name = "ID_FINCA")
+    private Long idFinca;
 
     @Column(name = "NOMBRE")
     private String nombre;
@@ -40,31 +44,20 @@ public class Alimento {
     @Column(name = "PRECIO_POR_UNIDAD")
     private double precioPorUnidad;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> proveedores;
 
     @Column(name = "FOTO")
     private byte[] foto;
-    
-    public Alimento(Long idUsuario, String nombre, TipoAlimento tipo, String composicionNutricional,
-            LocalDate fechaDeCaducidad, int cantidadDisponible, double precioPorUnidad, List<String> proveedores) {
-        this.idUsuario = idUsuario;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.composicionNutricional = composicionNutricional;
-        this.fechaDeCaducidad = fechaDeCaducidad;
-        this.cantidadDisponible = cantidadDisponible;
-        this.precioPorUnidad = precioPorUnidad;
-        this.proveedores = proveedores;
-    }
 
     public Alimento() {
     }
 
-    public Alimento(Long idUsuario, String nombre, TipoAlimento tipo, String composicionNutricional,
+    public Alimento(Long idUsuario, Long idFinca, String nombre, TipoAlimento tipo, String composicionNutricional,
             LocalDate fechaDeCaducidad, int cantidadDisponible, double precioPorUnidad, List<String> proveedores,
             byte[] foto) {
         this.idUsuario = idUsuario;
+        this.idFinca = idFinca;
         this.nombre = nombre;
         this.tipo = tipo;
         this.composicionNutricional = composicionNutricional;
@@ -74,6 +67,7 @@ public class Alimento {
         this.proveedores = proveedores;
         this.foto = foto;
     }
+
 
     public Long getIdAlimento() {
         return idAlimento;
@@ -153,5 +147,15 @@ public class Alimento {
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
+    }
+
+
+    public Long getIdFinca() {
+        return idFinca;
+    }
+
+
+    public void setIdFinca(Long idFinca) {
+        this.idFinca = idFinca;
     }    
 }
